@@ -30,4 +30,16 @@ router.patch('/:name', (req, res, next) => {
 	return res.status(201).json({ items: foundItem });
 });
 
+router.delete('/:name', (req, res, next) => {
+	// try {
+	// 	items.remove(req.params.name);
+	// 	return res.json({ msg: 'Successfully deleted' });
+	// } catch (err) {
+	// 	return next(err);
+	// }
+	let foundItem = items.findIndex((item) => item.name === req.params.name);
+	items.splice(foundItem, 1);
+	return res.json({ msg: 'Deleted' });
+});
+
 module.exports = router;
